@@ -8,20 +8,23 @@ fetch("http://jsonplaceholder.typicode.com/users")
 
     json.forEach((item)=>{
 
-        const itemNome = criaItemLista("Nome",item["name"]);
-        const itemSobrenome = criaItemLista("Sobrenome",item["username"])
-
+        const itemNome = criaItemLista(item["name"]);
+    
         ul.appendChild(itemNome)   
-        ul.appendChild(itemSobrenome)     
+  
     })
 })
+.catch(erro=>{
 
-function criaItemLista(label,valor){
+    const itemErro = criaItemLista("Ocorreu um erro na aquisição dos dados")
+    ul.appendChild(itemErro)
+})
+
+function criaItemLista(nome){
 
     const item = document.createElement("li");
 
-    item.innerHTML= label + ":";
-    item.innerHTML+= valor;
+    item.innerHTML= nome;
 
     return item
 }
